@@ -1,0 +1,93 @@
+import random
+
+class Human:
+    def __init__(self, name='Афанасий', age=random.randint(0, 74), muzhskoe=random.randint(1, 100), health = random.randint(1, 100), happy=random.randint(1, 100)):
+        self.name = name
+        self.age = age
+        self.muzhskoe = muzhskoe
+        self.health = health
+        self.happy = happy
+    
+    def birthday(self):
+        self.age += 1
+    
+    def plus_muzhskoe(self, delta):
+        self.muzhskoe += delta
+    def minus_muzhskoe(self, delta):
+        self.muzhskoe -= delta
+    def sotka_muzhskogo(self):
+        self.muzhskoe = 100
+    
+    def pobili(self):
+        self.happy -= random.randint(1, 100)
+        self.health -= random.randint(1, 100)
+        
+    def durka():
+        self.health = (self.health + random.randint(1, 100)) % 100
+        self.happy = random.randint(10, 50)
+    
+    def schastliviy(self):
+        self.happy = random.randint(90, 100)
+    def norm(self):
+        self.happy = random.randint(40, 60)
+    def grustniy(self):
+        self.happy = random.randint(10, 25)
+    
+    def __str__(self):
+        return f"""*** {self.name} ***
+Возраст: {self.age}
+Мужское: {self.muzhskoe}
+Здоровье: {self.health}
+Настроение: {self.happy}"""
+
+
+class Arseniy(Human):
+    def __init__(self, name='Арсений', age=random.randint(0, 74), muzhskoe=random.randint(1, 100), sosal=False, skoka_depnul = random.randint(0, 768324537), health=random.randint(1, 100), happy=random.randint(1, 100)):
+        super().__init__(name, age, muzhskoe, health, happy)
+        self.sosal = sosal
+        self.skoka_depnul = skoka_depnul
+    
+    def __str__(self):
+        if self.sosal:
+            self.str_sosal = 'ДА'
+        else:
+            self.str_sosal = 'НЕТ'
+        return f"""*** {self.name} Арсений ***
+Возраст: {self.age}
+Мужское: {self.muzhskoe}
+Здоровье: {self.health}
+Настроение: {self.happy}
+Сосал? -{self.str_sosal}
+Депнул уже {self.skoka_depnul} денег"""
+
+    def sosal(self):
+        self.sosal = True
+        self.muzhskoe = random.randint(3, 8)
+        self.happy += 20
+        if self.happy > 100:
+            self.happy = 100
+    def ne_sosal(self):
+        self.sosal = False
+        self.muzhskoe = random.randint(90, 100)
+        self.happy -= 20
+        if self.happy < 0:
+            self.happy = 0
+    
+    def dep(self, summa):
+        self.skoka_depnul += summa
+        self.muzhskoe -= random.randint(1, 10)
+        if self.muzhskoe < 0:
+            self.muzhskoe = 0
+    def win(self, summa):
+        self.skoka_depnul -= summa
+        self.muzhskoe += random.randint(1, 10)
+        self.happy += summa % 20
+        if self.muzhskoe > 100:
+            self.muzhskoe = 100
+        if self.happy > 100:
+            self.happy = 100
+    
+    def collectory(self, power=random.randint(1, 95)):
+        self.health -= power
+        self.skoka_depnul -= random.randint(0, self.skoka_depnul)
+        self.happy = 0
